@@ -1,10 +1,8 @@
 pandas
-zipfile
 plotly
-matplotlib.pyplot
+matplotlib
 seaborn
 requests
-BytesIO
 streamlit
 
 # we're telling streamlit that these are the packages that we are using
