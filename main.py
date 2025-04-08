@@ -30,7 +30,7 @@ import streamlit as st
 # df = load_name_data()
 
 ## LOAD DATA FROM A SAVED FILE
-df = pd.read_csv('/Users/rental/Desktop/winter2025/stat386/class practices/all-names.csv')
+df = pd.read_csv('/Users/rental/Desktop/winter2025/stat386/class-practice/all-names.csv')
 df['total_births'] = df.groupby(['year', 'sex'])['count'].transform('sum')
 df['prop'] = df['count'] / df['total_births']
 
@@ -78,7 +78,7 @@ with tab3:
     top_names = df[df['year'] == yoi]
     top_female = top_names[top_names['sex'] == 'F'].nlargest(10, 'count')
 
-    fig2 = plt.figure(figsize=(15, 8))
+    fig2 = plt.figure(figsize=(10, 5))
 
     sns.barplot(data=top_female, x='count', y='name')
     plt.title(f"top 10 female names in {yoi}")
