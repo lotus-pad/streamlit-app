@@ -11,28 +11,31 @@ from io import BytesIO
 import streamlit as st
 
 ## LOAD DATA DIRECTLY FROM SS WEBSITE
-# @st.cache_data
-# def load_name_data():
-#     names_file = 'https://www.ssa.gov/oact/babynames/names.zip'
-#     response = requests.get(names_file)
-#     with zipfile.ZipFile(BytesIO(response.content)) as z:
-#         dfs = []
-#         files = [file for file in z.namelist() if file.endswith('.txt')]
-#         for file in files:
-#             with z.open(file) as f:
-#                 df = pd.read_csv(f, header=None)
-#                 df.columns = ['name','sex','count']
-#                 df['year'] = int(file[3:7])
-#                 dfs.append(df)
-#         data = pd.concat(dfs, ignore_index=True)
-#     data['pct'] = data['count'] / data.groupby(['year', 'sex'])['count'].transform('sum')
-#     return data
-# df = load_name_data()
-
-## LOAD DATA FROM A SAVED FILE
-df = pd.read_csv('/Users/rental/Desktop/winter2025/stat386/class-practice/all-names.csv')
+@st.cache_data
+def load_name_data():
+    names_file = 'https://www.ssa.gov/oact/babynames/names.zip'
+    response = requests.get(names_file)
+    with zipfile.ZipFile(BytesIO(response.content)) as z:
+        dfs = []
+        files = [file for file in z.namelist() if file.endswith('.txt')]
+        for file in files:
+            with z.open(file) as f:
+                df = pd.read_csv(f, header=None)
+                df.columns = ['name','sex','count']
+                df['year'] = int(file[3:7])
+                dfs.append(df)
+        data = pd.concat(dfs, ignore_index=True)
+    data['pct'] = data['count'] / data.groupby(['year', 'sex'])['count'].transform('sum')
+    return data
+df = load_name_data()
 df['total_births'] = df.groupby(['year', 'sex'])['count'].transform('sum')
 df['prop'] = df['count'] / df['total_births']
+df['rank'] = df.groupby(['year', 'sex'])['count'].rank(method='first', ascending=False)
+
+## LOAD DATA FROM A SAVED FILE
+# df = pd.read_csv('/Users/rental/Desktop/winter2025/stat386/class-practice/all-names.csv')
+# df['total_births'] = df.groupby(['year', 'sex'])['count'].transform('sum')
+# df['prop'] = df['count'] / df['total_births']
 
 ## LOAD DATA FROM A SMALLER NAME DATASET ON GITHUB
 # url = 'https://raw.githubusercontent.com/esnt/Data/refs/heads/main/Names/popular_names.csv'
@@ -87,9 +90,3 @@ with tab3:
     plt.tight_layout()
 
     st.pyplot(fig2)
-
-
-
-
-
-
