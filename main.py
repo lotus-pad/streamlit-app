@@ -32,6 +32,7 @@ df['total_births'] = df.groupby(['year', 'sex'])['count'].transform('sum')
 df['prop'] = df['count'] / df['total_births']
 df['rank'] = df.groupby(['year', 'sex'])['count'].rank(method='first', ascending=False)
 
+
 ## LOAD DATA FROM A SAVED FILE
 # df = pd.read_csv('/Users/rental/Desktop/winter2025/stat386/class-practice/all-names.csv')
 # df['total_births'] = df.groupby(['year', 'sex'])['count'].transform('sum')
