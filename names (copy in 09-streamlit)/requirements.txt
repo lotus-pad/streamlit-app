@@ -1,0 +1,10 @@
+pandas
+plotly
+matplotlib
+seaborn
+requests
+streamlit
+
+# we're telling streamlit that these are the packages that we are using
+# purpose: for deploying for streamlit community cloud soo that i don't have to 
+# host the app remotely, if someone wants to access it, this is what will help
