@@ -4,7 +4,7 @@ import altair as alt
 
 # df = pd.read_csv("/Users/rental/Desktop/winter2025/stat386/blog/blog-codes/the-lost-words-codes/books.csv")
 
-url = 'https://github.com/lotus-pad/blog-codes/blob/eda872b6de163a7d4e34961bc1329212339ee228/the-lost-words-codes/books.csv'
+url = 'https://raw.githubusercontent.com/lotus-pad/the-lost-words-codes/books.csv'
 df = pd.read_csv(url)
 
 df.columns = [col.strip().title().replace(" ", "_").replace("-", "_") for col in df.columns]
