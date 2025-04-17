@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-df = pd.read_csv("/Users/rental/Desktop/winter2025/stat386/blog/blog-codes/the-lost-words-codes/books.csv")
+df = pd.read_csv("books.csv")
 
 
 # url = 'https://raw.githubusercontent.com/lotus-pad/the-lost-words-codes/books.csv'
