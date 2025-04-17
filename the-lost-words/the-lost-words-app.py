@@ -51,7 +51,7 @@ if search_term:
     st.dataframe(results)
 
 # Documentation
-with st.popover("ℹ️ how to use this app"):
+with st.popover("how to use this app"):
     st.markdown("""
     - use the sidebar to filter by author or category  
     - explore filtered data under 'explore books' tab  
